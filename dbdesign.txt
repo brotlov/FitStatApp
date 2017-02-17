@@ -1,0 +1,22 @@
+Root
+    Users
+        UserInfo
+            Name
+            Email Address
+        WorkoutHistory
+            Name
+            Date
+            Completed
+        SavedPlans
+            Name
+            WorkoutsIncluded
+        SavedWorkouts
+            Name
+            Exercises
+            RecurringDays
+    Exercises
+        Name
+        Category
+    PopularWorkoutPlans
+        Name
+        

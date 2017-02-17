@@ -1,3 +1,4 @@
+<!--Main Workout Manager-->
 <div class="col-md-6">
     <div class="widget">
         <div class="widget-title">
@@ -20,11 +21,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let workout of workoutList">
-                            <td>{{workout.id}}</td>
+                        <tr *ngFor="let workout of workoutList; let i = index" [attr.data-index]="i">
+                            <td>{{i+1}}</td>
                             <td>{{workout.name}}</td>
                             <td>{{workout.exercises}}</td>
                             <td>{{workout.day}}</td>
+                            <!--<td>{{workout.id}}</td>-->
                             <td class="del">
                               <button (click)="fbEditItem(workout.id)" type="submit" class="btn btn-primary start edit">
                                   <i class="fa fa-edit"></i>
@@ -43,7 +45,8 @@
         </div>
     </div>
 </div>
-<div *ngIf="addWorkoutWidgetShown" class="col-md-6">
+<!--Add a workout widget-->
+<div *ngIf="addWorkoutWidgetShown && !editWorkoutWidgetShown" class="col-md-6">
     <div class="widget">
         <div class="widget-title">
             <h2>Add a workout to your workout list</h2>
@@ -79,10 +82,11 @@
         </div>
     </div>
 </div>
-<div *ngIf="editWorkoutWidgetShown" class="col-md-6">
+<!--Edit a workout widget-->
+<div *ngIf="editWorkoutWidgetShown && !addWorkoutWidgetShown" class="col-md-6">
     <div class="widget">
         <div class="widget-title">
-            <h2>Edit {{editWorkoutName}}</h2>
+            <h2>Edit {{workoutName}}</h2>
         </div>
         <div class="projects scrollbar-inner">
           <div class="projects-table workout-addition">
@@ -105,7 +109,7 @@
                   </div>
               </div>
               <div class="col-md-12">
-                <button (click)="fbPostData(workoutName, workoutExercises)" class="btn btn-success add-workout fileinput-button">
+                <button (click)="fbUpdateData(workoutName, workoutExercises, workoutId)" class="btn btn-success add-workout fileinput-button">
                     <i class="fa fa-plus"></i>
                     <span>Save your Workout</span>
                 </button>
@@ -115,27 +119,3 @@
         </div>
     </div>
 </div>
-
-
-<!--<h1>
-  Manage Workouts
-</h1>
-<h3>Current Workouts</h3>
-<div>
-    <p *ngFor="let workout of workoutList">
-      <span>{{workout.id}}</span>
-      <span>{{workout.name}}</span>
-      <span>{{workout.workoutWorkouts}}</span>
-      <span>{{workout.day}}</span>
-      <span><button (click)="fbDeleteItem(workout.id)">Delete Item</button></span>
-    </p>
-</div>
-<h3>Add a new workout</h3>
-<p>
-  <label>Name</label>
-  <input [(ngModel)]="workoutName" type="text">
-  <input [(ngModel)]="workoutWorkouts" type="text">
-  <input [(ngModel)]="workoutDay" type="text">
-<p>
-  <button (click)="fbPostData(workoutName, workoutWorkouts, workoutDay)">Add</button>
-</p>-->

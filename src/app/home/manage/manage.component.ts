@@ -9,11 +9,7 @@ declare var firebase: any;
 })
 export class ManageComponent implements OnInit {
 
-  workoutName: string = null;
-  workoutExercises: string = null;
-  failedValidation=false;
-  checkedDays = [];
-  dayList = [
+dayList = [
     {name: "Monday", checked: false},
     {name: "Tuesday", checked: false},
     {name: "Wednesday", checked: false},
@@ -22,13 +18,14 @@ export class ManageComponent implements OnInit {
     {name: "Saturday", checked: false},
     {name: "Sunday", checked: false},
   ];
-  
-  
-  editWorkoutName = "";
+  workoutId:any;
+  workoutName: string = null;
+  workoutExercises: string = null;
+  failedValidation=false;
+  checkedDays = [];
   addWorkoutWidgetShown = false;
   editWorkoutWidgetShown = false;
   workoutList = [];
-  id: any;
 
   updateChecked(value,event){
     if(event.target.checked){
@@ -39,41 +36,57 @@ export class ManageComponent implements OnInit {
       this.checkedDays.splice(indexx,1);
     }
   }
- 
+
   fbEditItem(id){
-    this.editWorkoutWidgetShown = true;
-    var ref = firebase.database().ref("/Workoutlist");
-    var key = "";
-    var dataObject:any;
-    ref.orderByChild("id").equalTo(id).on("child_added", function(snapshot) {
-       key = snapshot.key;
-       dataObject = snapshot.val();
-    })
-    this.editWorkoutName = dataObject.name;
-    this.workoutName = dataObject.name;
-    this.workoutExercises = dataObject.exercises;
-    var checkedDayList = dataObject.day;
+    this.workoutName = '';
+    this.workoutExercises = '';
+    this.checkedDays.length = 0;
     for(var i = 0; i < this.dayList.length; i++) {
-        if (this.dayList[i].name == checkedDayList) {
-            this.dayList[i].checked = true
-            break;
+        this.dayList[i].checked = false;
+      }
+    this.workoutId = id
+    this.addWorkoutWidgetShown=false;
+    this.editWorkoutWidgetShown = true;
+    firebase.database().ref("/Workoutlist/" + id).once('value', (snapshot) =>{
+      this.workoutName = snapshot.val().name;
+      this.workoutExercises = snapshot.val().exercises;
+      var checkedDayList = snapshot.val().day;
+      for(var i = 0; i < this.dayList.length; i++) {
+        if (checkedDayList.includes(this.dayList[i].name)) {
+            this.dayList[i].checked = true;
+            this.checkedDays.push(this.dayList[i].name);
         }
-    }
+      }
+    });
   }
 
   showAddWorkoutWidget(){
-    this.addWorkoutWidgetShown = !this.addWorkoutWidgetShown
+    this.workoutName = '';
+    this.workoutExercises = '';
+    this.checkedDays.length = 0;
+    for(var i = 0; i < this.dayList.length; i++) {
+        this.dayList[i].checked = false;
+      }
+    this.editWorkoutWidgetShown = false;
+    this.addWorkoutWidgetShown = !this.addWorkoutWidgetShown;
   }
 
   fbGetData(){
     firebase.database().ref("/Workoutlist").on('child_added', (snapshot) =>{
-      this.workoutList.push(snapshot.val());
-      this.id = this.workoutList.length;
+      var snapshotVal = snapshot.val();
+      snapshotVal.id=snapshot.key;
+      this.workoutList.push(snapshotVal);
+    });
+
+    firebase.database().ref("/Workoutlist").on('child_changed', (snapshot) =>{
+      var index = this.workoutList.findIndex(x => x.name==snapshot.val().name);
+      var snapshotVal = snapshot.val();
+      snapshotVal.id=snapshot.key;
+      this.workoutList[index]=snapshotVal;
     });
 
     firebase.database().ref("/Workoutlist").on('child_removed', (snapshot) =>{
-      var id = snapshot.val().id;
-      var index = this.workoutList.findIndex(x => x.id==id);
+      var index = this.workoutList.findIndex(x => x.name==snapshot.val().name);
       this.workoutList.splice(index, 1);
     });
 
@@ -82,7 +95,6 @@ export class ManageComponent implements OnInit {
   addToList(workoutName){
     var ref = firebase.database().ref("/Workoutlist");
     var key = "";
-    
     ref.orderByChild("id").equalTo(workoutName).on("child_added", function(snapshot) {
        key = snapshot.key;
        
@@ -97,21 +109,29 @@ export class ManageComponent implements OnInit {
       exercises = "";
     }
     if (workoutName != undefined){
-      firebase.database().ref("/Workoutlist").push({id: this.id + 1, name: workoutName, exercises: exercises, day: this.checkedDays});
+      firebase.database().ref("/Workoutlist").push({name: workoutName, exercises: exercises, day: this.checkedDays});
       this.workoutName = '';
       this.workoutExercises = '';
       this.addWorkoutWidgetShown=false;
-      this.id++;
+      this.checkedDays.length = 0
+    }
+  }
+
+  fbUpdateData(workoutName, exercises,id){
+    if (workoutName == undefined){
+      this.failedValidation=true;
+    }
+    if (exercises == undefined){
+      exercises = "";
+    }
+    if (workoutName != undefined){
+      firebase.database().ref("/Workoutlist/" + id).update({name: workoutName, exercises: exercises, day: this.checkedDays})
     }
   }
 
   fbDeleteItem(id){
-    var ref = firebase.database().ref("/Workoutlist");
-    var key = "";
-    ref.orderByChild("id").equalTo(id).on("child_added", function(snapshot) {
-       key = snapshot.key;
-    })
-    firebase.database().ref("/Workoutlist").child(key).remove().then(function(){
+    console.log(id);
+    firebase.database().ref("/Workoutlist/" + id).remove().then(function(){
   })
 }
  
