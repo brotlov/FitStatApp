@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Spark Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="css/color.css" />
+</head>
+<body>
+    <div class="pageloader">
+        <div class="loader">
+            <div class="cssload-thecube"> <div class="cssload-cube cssload-c1"></div> <div class="cssload-cube cssload-c2"></div> <div class="cssload-cube cssload-c4"></div> <div class="cssload-cube cssload-c3"></div></div>                                    
+        </div>
+    </div><!-- Page Loader -->
+    <div class="dominence-layout">
+        <div class="dominence-sidemenu">
+            <div class="logo"><a href="index.html" title=""><img src="images/logo.png" alt="" /></a></div><!-- Logo -->
+            <div class="dominence-admin">
+                <img src="http://placehold.it/59x70" alt="" />
+                <div class="admin-name">
+                    <strong>Max Martin</strong>
+                    <span>Administrator</span>
+                    <div class="admin-bar">
+                        <a href="profile.html" title=""><i class="fa fa-user-o"></i></a>
+                        <a href="login.html" title=""><i class="fa fa-lock"></i></a>
+                        <a href="mail.html" title=""><i class="fa fa-envelope-o"></i></a>
+                        <a href="login.html" title=""><i class="fa fa-power-off"></i></a>
+                    </div>
+                </div>
+            </div><!-- Spark Admin -->
+            <nav class="scrollbar-inner navigation">
+                <ul>
+                    <li><a href="index.html" title=""><i class="fa fa-tachometer"></i> Dashoboard 1</a></li>
+                    <li><a href="dashboard2.html" title=""><i class="fa fa-tachometer"></i> Dashboard 2</a></li>
+                    <li><a href="#" title=""><i class="fa fa-pencil"></i> Pages</a>
+                        <ul>
+                            <li><a href="404.html" title="">Error Page 404</a></li>
+                            <li><a href="calendar.html" title="">Dynamic Calendar</a></li>
+                            <li><a href="forms.html" title="">Steps Form and Simple Forms</a></li>
+                            <li><a href="maps.html" title="">Maps</a></li>
+                            <li><a href="profile.html" title="">Profile Page</a></li>
+                            <li><a href="sliders.html" title="">Sliders</a></li>
+                            <li><a href="accordions.html" title="">Accordions</a></li>
+                            <li><a href="range-sliders.html" title="">Range Sliders</a></li>
+                            <li><a href="tasks.html" title="">Tasks</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="mail.html" title=""><i class="fa fa-envelope-o"></i> Mail System</a>
+                        <ul>
+                            <li><a href="mail.html" title="">Messages</a></li>
+                            <li><a href="compose.html" title="">Compose Mail</a></li>
+                            <li><a href="mail-open.html" title="">Mail Open</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="login.html" title=""><i class="fa fa-sign-in"></i> Login</a>
+                        <ul>
+                            <li><a href="login.html" title=""> Login</a></li>
+                            <li><a href="signup.html" title=""> Sign Up</a></li>
+                            <li><a href="forget.html" title=""> Forget Password</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="icons.html" title=""><i class="fa fa-fort-awesome"></i> Icons</a></li>
+                    <li><a href="gallery-dynamic.html" title=""><i class="fa fa-camera-retro"></i> Galleries</a>
+                        <ul>
+                            <li><a href="gallery-dynamic.html" title="">Dynamic Gallery</a></li>
+                            <li><a href="gallery.html" title="">Simple Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="widgets.html" title=""><i class="fa fa-bolt"></i> Widgets</a></li>
+                </ul>
+            </nav>
+            <div class="settings-panel">
+                <h3>Accounts</h3>
+                <div class="toggle-setting">
+                    <span>Office Account</span>
+                    <div class="toggle-dark"><div rel=clickme class="toggle"></div></div>
+                </div>
+                <div class="toggle-setting">
+                    <span>Personal Account</span>
+                    <div class="toggle-dark"><div rel=clickme class="toggle off"></div></div>
+                </div>
+                <div class="toggle-setting">
+                    <span>Business Account</span>
+                    <div class="toggle-dark"><div rel=clickme class="toggle"></div></div>
+                </div>
+
+                <h3>General Settings</h3>
+                <div class="toggle-setting">
+                    <span>Notifications</span>
+                    <div class="toggle-dark"><div rel=clickme class="toggle"></div></div>
+                </div>
+                <div class="toggle-setting">
+                    <span>Notification Sound</span>
+                    <div class="toggle-dark"><div rel=clickme class="toggle"></div></div>
+                </div>
+                <div class="toggle-setting">
+                    <span>My Profile</span>
+                    <div class="toggle-dark"><div rel=clickme class="toggle"></div></div>
+                </div>
+                <div class="toggle-setting">
+                    <span>Show Online</span>
+                    <div class="toggle-dark"><div rel=clickme class="toggle off"></div></div>
+                </div>
+                <div class="toggle-setting">
+                    <span>Public Profile</span>
+                    <div class="toggle-dark"><div rel=clickme class="toggle"></div></div>
+                </div>
+            </div><!-- Settings Panel -->
+        </div><!-- Dominence Sidemenu -->
+
+
+
+
+        <div class="collapsed-menu">
+            <div class="logo"><a href="index.html" title=""><img src="images/logo2.png" alt="" /></a></div><!-- Logo -->
+            <ul>
+                <li><a href="index.html" title=""><i class="fa fa-tachometer"></i> <span>Dashboard</span></a></li>
+                <li><a href="dashboard2.html" title=""><i class="fa fa-tachometer"></i> <span>Dashboard 2</span></a></li>
+                <li><a href="mail.html" title=""><i class="fa fa-envelope-o"></i> <span>Mail System</span></a></li>
+                <li><a href="login.html" title=""><i class="fa fa-sign-in"></i> <span>Login</span></a></li>
+                <li><a href="icons.html" title=""><i class="fa fa-fort-awesome"></i> <span>Icons</span></a></li>
+                <li><a href="gallery-dynamic.html" title=""><i class="fa fa-camera-retro"></i> <span>Galleries</span></a></li>
+                <li><a href="widgets.html" title=""><i class="fa fa-bolt"></i> <span>Widgets</span></a></li>
+            </ul>
+        </div><!-- Collapsed Menu -->
+
+
+        <header>
+            <a class="sidemenu-btn" href="#" title=""><i class="ti-menu"></i></a>
+            <a class="settings-btn" href="#" title=""><i class="ti-settings"></i></a>
+            <div class="location">
+                <i class="fa fa-map-marker"></i>
+                <div id="address"></div>
+            </div>
+            <div class="header-exts">
+                <div class="header-search">
+                    <a class="round-btn color1-bg" href="#" title=""><i class="ti-search"></i></a>
+                    <form>
+                        <input type="text" placeholder="Start Typing Here...">
+                    </form>
+                </div><!-- Header Search -->
+                <div class="full-screen">
+                    <a class="round-btn color2-bg" href="#"  title=""><i class="ti-fullscreen"></i></a>
+                </div><!-- Full Screen -->
+                <div class="notification">
+                    <a class="round-btn color3-bg open-dropdown" href="#" title=""><i class="ti-bell"></i></a>
+                    <span class="animated">1</span>
+
+                    <div class="dropdown scrollbar-inner">
+                        <h4 class="dropdown-title">Notification (3) <a href="#" title="">See All</a></h4>
+                        <ul>
+                            <li>
+                                <a href="mail-open.html" title="" class="info">
+                                    <span class="info-img"><img src="http://placehold.it/50x49" alt="" /></span>
+                                    <span class="info-detail">
+                                        <i>Jessica Caruso</i> accepted your invitation to join the team.
+                                        <strong>2 Mins Ago</strong>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mail-open.html" title="" class="info">
+                                    <span class="info-img"><img src="http://placehold.it/50x49" alt="" /></span>
+                                    <span class="info-detail">
+                                        <i>Joel king </i> is now following you
+                                        <strong>2 Days Ago</strong>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mail-open.html" title="" class="info">
+                                    <span class="info-img"><img src="http://placehold.it/50x49" alt="" /></span>
+                                    <span class="info-detail">
+                                        <i>Jessica Caruso</i> accepted your invitation to join the team.
+                                        <strong>2 Mins Ago</strong>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- Notification -->
+                <div class="notification msgs">
+                    <a class="round-btn color4-bg open-dropdown" href="#" title=""><i class="ti-comment"></i></a>
+                    <span id="animated">4</span>
+
+                    <div class="dropdown scrollbar-inner">
+                        <h4 class="dropdown-title">Messages (4) <a href="#" title="">See All</a></h4>
+                        <ul>
+                            <li>
+                                <a href="mail-open.html" title="" class="info">
+                                    <span class="info-img"><img src="http://placehold.it/50x49" alt="" /></span>
+                                    <span class="info-detail">
+                                        <i>Jessica Caruso</i> accepted your invitation to join the team.
+                                        <strong>2 Mins Ago</strong>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mail-open.html" title="" class="info">
+                                    <span class="info-img"><img src="http://placehold.it/50x49" alt="" /></span>
+                                    <span class="info-detail">
+                                        <i>Joel king </i> is now following you
+                                        <strong>2 Days Ago</strong>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mail-open.html" title="" class="info">
+                                    <span class="info-img"><img src="http://placehold.it/50x49" alt="" /></span>
+                                    <span class="info-detail">
+                                        <i>Jessica Caruso</i> accepted your invitation to join the team.
+                                        <strong>2 Mins Ago</strong>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mail-open.html" title="" class="info">
+                                    <span class="info-img"><img src="http://placehold.it/50x49" alt="" /></span>
+                                    <span class="info-detail">
+                                        <i>Joel king </i> is now following you
+                                        <strong>2 Days Ago</strong>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- Notification -->
+            </div><!-- Header Exts -->
+        </header><!-- Header -->
+
+        <div class="breadcrumbs-bar">
+            <ul class="breadcrumbs">
+                <li><a href="index.html" title="">Dashboard</a></li>
+                <li>Pages</li>
+                <li>Profile</li>
+            </ul>
+
+            <div class="more-links">
+                <a href="#" title=""><i class="fa fa-check"></i> New Orders</a>
+                <a href="tasks.html" title=""><i class="fa fa-tasks"></i> My Tasks</a>
+            </div>
+        </div><!-- Breadcrumbs Bar -->
+
+        <div class="content-area">
+            <div class="welcome">
+                <img src="images/sun.png" alt="" />
+                <div class="welcome-text">
+                    <strong>Hi <a href="#" title="">Max </a>, Welcome back</strong>
+                    <span>Have a nice day</span>
+                </div>
+            </div><!-- Welcome -->
+
+            <div class="curr-bal">
+                <div class="bal-amount">
+                    <span>CURRENT BALANCE <i class="fa fa-arrow-up color5"></i></span>
+                    <strong>$21,561.21</strong>
+                </div>
+                <table> <tr><td data-sparkline="71, 78, 39, 66, 65, 58, 69, 66 "></td></tr> </table>
+            </div><!-- Current Balance -->
+
+            
+
+            <div class="widgets-holder">
+                <div class="row">
+                    <div class="masonary">
+
+                        <div class="col-md-4">
+                            <div class="widget">
+                                <div class="personal-info">
+                                    <div class="personal-intro">
+                                        <img src="http://placehold.it/960x640" alt="" />
+                                        <div class="intro-text">
+                                            <img src="http://placehold.it/100x100" alt="" />
+                                            <strong>Brian Kellvin</strong>
+                                            <span>Administrator</span>
+                                        </div>
+                                    </div>
+                                    <div class="personal-detail">
+                                        <div class="socials">
+                                            <a title="4K Likes" data-toggle="tooltip" data-placement="bottom"  class="fb" href="#"><i class="fa fa-facebook"></i></a>
+                                            <a title="2K Followers" data-toggle="tooltip" data-placement="bottom" class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                                            <a title="1.5K Followers" data-toggle="tooltip" data-placement="bottom" class="google-plus" href="#"><i class="fa fa-google-plus"></i></a>
+                                        </div>                                        
+
+                                        <h4 class="bar-title">TODAY STATISTIC</h4>
+                                        <span>Task Completed</span>
+                                        <strong>76/100</strong>
+                                        <div class="progress">
+                                            <div class="progress-bar color1-bg" role="progressbar" style="width:76%;"></div>
+                                        </div>
+                                        <span>Queries Resolved</span>
+                                        <strong>43/100</strong>
+                                        <div class="progress">
+                                            <div class="progress-bar color4-bg" role="progressbar" style="width:43%;"></div>
+                                        </div>
+                                        <span>Points Completed</span>
+                                        <strong>84/100</strong>
+                                        <div class="progress">
+                                            <div class="progress-bar color3-bg" role="progressbar" style="width:84%;"></div>
+                                        </div>
+                                        <span>Total Visits</span>
+                                        <strong>75/100</strong>
+                                        <div class="progress">
+                                            <div class="progress-bar color2-bg" role="progressbar" style="width:75%;"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div><!-- Personal Info Widget -->
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="widget">
+                                <div class="loader">
+                                    <div class="cssload-thecube"> <div class="cssload-cube cssload-c1"></div> <div class="cssload-cube cssload-c2"></div> <div class="cssload-cube cssload-c4"></div> <div class="cssload-cube cssload-c3"></div></div>                                    
+                                </div>
+                                <div class="widget-title">
+                                    <h2>Update Status</h2>
+                                    <span class="color2">Your last status was updated 15 hours ago</span>
+                                    <div class="opts">
+                                        <a class="refresh" href="#" title=""><i class="fa fa-refresh"></i></a>
+                                        <a class="expend" href="#" title=""><i class="fa fa-arrows-alt"></i></a>
+                                        <a class="removethis" href="#" title=""><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                                <div class="status-upload">
+                                    <form>
+                                        <textarea placeholder="What are you doing right now?"></textarea>
+                                        <ul>
+                                            <li><a title="Audio" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-music"></i></a></li>
+                                            <li><a title="Video" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-video-camera"></i></a></li>
+                                            <li><a title="Sound Record" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-microphone"></i></a></li>
+                                            <li><a title="Picture" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-picture-o"></i></a></li>
+                                        </ul>
+                                        <button type="submit" class="color2-bg"><i class="fa fa-share"></i> Share</button>
+                                    </form>
+                                </div>
+                            </div><!-- Update Status Widget  -->
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="widget">
+                                <div class="timeline-sec scrollbar-inner">
+                                    <ul>
+                                        <li>
+                                            <div class="timeline">
+                                                <div class="user-timeline">
+                                                    <span><img src="http://placehold.it/40x40" alt="" /></span>
+                                                </div>
+                                                <div class="timeline-detail">
+                                                    <div class="timeline-head">
+                                                        <h3>Jonathan Gardel<span>2 min ago</span><i class="color1-bg">Admin</i></h3>
+                                                        <div class="social-share">
+                                                            <a title=""><i class="fa fa-share-alt"></i></a>
+                                                            <ul class="social-btns">
+                                                                <li><a title="Facebook" data-toggle="tooltip" data-placement="left" href="#"><i class="fb fa fa-facebook"></i></a></li>
+                                                                <li><a title="Google" data-toggle="tooltip" data-placement="left" href="#"><i class="google-plus fa fa-google-plus"></i></a></li>
+                                                                <li><a title="Twitter" data-toggle="tooltip"  data-placement="left" href="#"><i class="twitter fa fa-twitter"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="timeline-content">
+                                                        <p>Set it as the font <a href="#" title="">John Doe</a> in your applition, and copy and paste the icons. Print this page.</p>
+                                                        <div class="progress"> <div class="progress-bar color1-bg" role="progressbar" style="width:76%;"></div> </div>
+                                                        <div data-toggle="buttons" class="btn-group btn-group-sm">
+                                                            <label class="btn btn-default color2-bg">
+                                                                <input type="radio" checked=""  name="options" /><i class="fa fa-comment-o"></i> Reply
+                                                            </label>
+                                                            <label class="btn btn-default color3-bg">
+                                                                <input type="radio"  name="options" /> <i class="fa fa-thumbs-o-up"></i> Like
+                                                            </label>
+                                                        </div>
+                                                        <form class="post-reply">
+                                                            <textarea placeholder="Write your comment"></textarea>
+                                                            <i class="fa fa-comments-o"></i>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="timeline">
+                                                <div class="user-timeline">
+                                                    <span><img src="http://placehold.it/40x40" alt="" /></span>
+                                                </div>
+                                                <div class="timeline-detail">
+                                                    <div class="timeline-head">
+                                                        <h3>Yameen khandil<span>2 hours ago</span><i class="color2-bg">Mod</i></h3>
+                                                        <div class="social-share">
+                                                            <a title=""><i class="fa fa-share-alt"></i></a>
+                                                            <ul class="social-btns">
+                                                                <li><a title="Facebook" data-toggle="tooltip" data-placement="left" href="#"><i class="fb fa fa-facebook"></i></a></li>
+                                                                <li><a title="Google" data-toggle="tooltip" data-placement="left" href="#"><i class="google-plus fa fa-google-plus"></i></a></li>
+                                                                <li><a title="Twitter" data-toggle="tooltip"  data-placement="left" href="#"><i class="twitter fa fa-twitter"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="timeline-content">
+                                                        <p>at <a href="#" title="">Khana Zidi</a> Jonathan DOe Uploaded 4 new photos.</p>
+                                                        <div class="timeline-gallery">
+                                                            <ul>
+                                                                <li><a title="Gallery Image" class="html5lightbox" href="images/view.gif"><i class="fa fa-search"></i><img src="http://placehold.it/70x70" alt="" /></a></li>
+                                                                <li><a title="Gallery Image" class="html5lightbox" href="images/view.gif"><i class="fa fa-search"></i><img src="http://placehold.it/70x70" alt="" /></a></li>
+                                                                <li><a title="Gallery Image" class="html5lightbox" href="images/view.gif"><i class="fa fa-search"></i><img src="http://placehold.it/70x70" alt="" /></a></li>
+                                                                <li><a title="Gallery Image" class="html5lightbox" href="images/view.gif"><i class="fa fa-search"></i><img src="http://placehold.it/70x70" alt="" /></a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div data-toggle="buttons" class="btn-group btn-group-sm">
+                                                            <label class="btn btn-default color2-bg">
+                                                                <input type="radio" checked=""  name="options" /><i class="fa fa-comment-o"></i> Reply
+                                                            </label>
+                                                            <label class="btn btn-default color3-bg">
+                                                                <input type="radio"  name="options" /> <i class="fa fa-thumbs-o-up"></i> Like
+                                                            </label>
+                                                        </div>
+                                                        <form class="post-reply">
+                                                            <textarea placeholder="Write your comment"></textarea>
+                                                            <i class="fa fa-comments-o"></i>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="timeline">
+                                                <div class="user-timeline">
+                                                    <span><img src="http://placehold.it/40x40" alt="" /></span>
+                                                </div>
+                                                <div class="timeline-detail">
+                                                    <div class="timeline-head">
+                                                        <h3>Brindal Dazi<span>4 min ago</span><i class="color3-bg">User</i></h3>
+                                                        <div class="social-share">
+                                                            <a title=""><i class="fa fa-share-alt"></i></a>
+                                                            <ul class="social-btns">
+                                                                <li><a title="Facebook" data-toggle="tooltip" data-placement="left" href="#"><i class="fb fa fa-facebook"></i></a></li>
+                                                                <li><a title="Google" data-toggle="tooltip" data-placement="left" href="#"><i class="google-plus fa fa-google-plus"></i></a></li>
+                                                                <li><a title="Twitter" data-toggle="tooltip"  data-placement="left" href="#"><i class="twitter fa fa-twitter"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="timeline-content">
+                                                        <p>Set it as the font <a href="#" title="">John Doe</a> in your applition, and copy and paste the icons. Print this page to PDF for te completet of vectors. Or to use othe the Font Aweo Awesome</p>
+                                                        <div data-toggle="buttons" class="btn-group btn-group-sm">
+                                                            <label class="btn btn-default color2-bg">
+                                                                <input type="radio" checked=""  name="options" /><i class="fa fa-comment-o"></i> Reply
+                                                            </label>
+                                                            <label class="btn btn-default color3-bg">
+                                                                <input type="radio"  name="options" /> <i class="fa fa-thumbs-o-up"></i> Like
+                                                            </label>
+                                                        </div>
+                                                        <form class="post-reply">
+                                                            <textarea placeholder="Write your comment"></textarea>
+                                                            <i class="fa fa-comments-o"></i>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div><!-- Timeline Section -->
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="widget">
+                                <div class="friend-list scrollbar-inner">
+                                    <ul id="frnd-list">
+                                        <li>
+                                            <img src="http://placehold.it/40x40" alt="" />
+                                            <h3>Jonathan Doe<i>Manager</i></h3>
+                                            <span class="online">Online</span>
+                                        </li>
+                                        <li>
+                                            <img src="http://placehold.it/40x40" alt="" />
+                                            <h3>Kailey Paul<i>Director</i></h3>
+                                            <span class="offline">Offline</span>
+                                        </li>
+                                        <li>
+                                            <img src="http://placehold.it/40x40" alt="" />
+                                            <h3>Lindsey Griffin<i>Desiger</i></h3>
+                                            <span class="offline">Online</span>
+                                        </li>
+                                        <li>
+                                            <img src="http://placehold.it/40x40" alt="" />
+                                            <h3>Bailee Mercado<i>Arts</i></h3>
+                                            <span class="online">Online</span>
+                                        </li>
+                                        <li>
+                                            <img src="http://placehold.it/40x40" alt="" />
+                                            <h3>Jonathan Doe<i>Manager</i></h3>
+                                            <span class="online">Online</span>
+                                        </li>
+                                        <li>
+                                            <img src="http://placehold.it/40x40" alt="" />
+                                            <h3>Kailey Paul<i>Director</i></h3>
+                                            <span class="offline">Offline</span>
+                                        </li>
+                                    </ul>
+                                </div>                            
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <p>All Rights Reserved @ <a href="#" title="">Bitlers.com</a></p>
+            </footer>
+        </div><!-- Content Area -->
+    </div>
+
+        
+
+            
+
+            
+
+
+
+            
+
+    <script src="js/jquery.min.js" ></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sparkline.js" ></script>
+    <script src="js/isotope.js" ></script>
+    <script src="js/scrollbar.js"></script>
+    <script src="js/toggles.min.js" ></script>
+    <script src="js/html5lightbox.js"></script>
+    <script src="js/script.js" ></script>
+
+</body>
+</html>

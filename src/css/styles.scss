@@ -1,0 +1,103 @@
+$activeColor: #20a2d6;
+$mainColour: #20a2d6;
+a.active{
+    color: $activeColor;
+}
+body{
+    a:focus{
+        text-decoration: none;
+    }
+    .dominence-layout{
+        a:hover{
+            cursor:pointer;
+            text-decoration:none;
+        }
+    }
+    .login-box{
+    input{
+        margin-bottom:20px;
+    }
+    }
+    .login-page{
+        background-size:cover;
+        background-repeat:no-repeat;
+    }
+    .header-exts{
+        margin-top:-16px;
+    }
+    .widget{
+        .projects{
+            overflow:visible
+        }
+    }
+    button.add-workout{
+        float:right;
+    }
+    table{
+        tr{
+            td.del{
+                text-align: right;
+                padding-right:0!important;
+                button{
+                    width:80px;
+                    margin-bottom:5px;
+                }
+            }
+        }
+    }
+    .workout-addition{
+        padding-bottom:30px;
+        .row{
+            margin-bottom:20px;
+            label{
+                color:$mainColour;
+            }
+            input{
+                margin-bottom:15px;
+            }
+            input.invalid{
+                border-color:red;
+            }
+        }
+        button.add-workout{
+            float:none;
+            margin-top:24px;
+        }
+        .day-list{
+            display:inline-block;
+            padding-right:10px;
+            label, input {
+                display:block;
+                width:auto;
+                float:none;
+                margin:0 auto;
+                color:#585858;
+            }
+            input[type="checkbox"] {
+                display:none;
+            }
+            input[type="checkbox"] + label span {
+                padding:15px 10px;
+                border-radius: 2px;
+                display:inline-block;
+                width:auto;
+                border:1px solid $mainColour;
+                }
+            input[type="checkbox"]:checked + label span {
+                background:$mainColour;
+                color:#fff;                
+            }
+            input[type="checkbox"] + label span:hover{
+                cursor:pointer;
+                background:$mainColour;
+                color:#fff;
+            }
+        }
+    }
+    
+}
+button{
+    &hover{
+        cursor:pointer;
+    }
+}

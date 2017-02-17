@@ -1,0 +1,141 @@
+<div class="col-md-6">
+    <div class="widget">
+        <div class="widget-title">
+            <h2>Your Workouts</h2>
+            <span class="color4">These are all of the workouts you've added to FitStat</span>
+            <button (click)="showAddWorkoutWidget()" class="btn btn-success add-workout fileinput-button">
+                <i class="fa fa-plus"></i>
+                <span>Add a workout</span>
+            </button>
+        </div>
+        <div class="projects scrollbar-inner">
+            <div class="projects-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Exercises Included</th>
+                            <th>Days</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let workout of workoutList">
+                            <td>{{workout.id}}</td>
+                            <td>{{workout.name}}</td>
+                            <td>{{workout.exercises}}</td>
+                            <td>{{workout.day}}</td>
+                            <td class="del">
+                              <button (click)="fbEditItem(workout.id)" type="submit" class="btn btn-primary start edit">
+                                  <i class="fa fa-edit"></i>
+                                  <span>Edit</span>
+                              </button>
+                              <button (click)="fbDeleteItem(workout.id)" 
+                                type="button" class="btn btn-danger delete">
+                                <i class="fa fa-trash"></i>
+                                <span> Delete</span>
+                              </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="addWorkoutWidgetShown" class="col-md-6">
+    <div class="widget">
+        <div class="widget-title">
+            <h2>Add a workout to your workout list</h2>
+        </div>
+        <div class="projects scrollbar-inner">
+          <div class="projects-table workout-addition">
+            <div class="row">
+              <div class="col-md-6">
+                  <label>Workout Name</label>
+                  <input [ngClass]="{'invalid':failedValidation}" [(ngModel)]="workoutName" type="text">
+              </div>
+              <div class="col-md-6">
+                  <label>Exercises</label>
+                  <input [(ngModel)]="workoutExercises" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <label>Days</label>
+                  <div class="day-list" *ngFor="let day of dayList">
+                    <input (change)="updateChecked(day.name, $event)" type="checkbox" id="checkbox_{{day.name}}" value="{{day.name}}" [checked]="day.checked" >
+                    <label for="checkbox_{{day.name}}"><span >{{day.name}}</span></label>
+                  </div>
+              </div>
+              <div class="col-md-12">
+                <button (click)="fbPostData(workoutName, workoutExercises)" class="btn btn-success add-workout fileinput-button">
+                    <i class="fa fa-plus"></i>
+                    <span>Add to your Workout List</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="editWorkoutWidgetShown" class="col-md-6">
+    <div class="widget">
+        <div class="widget-title">
+            <h2>Edit {{editWorkoutName}}</h2>
+        </div>
+        <div class="projects scrollbar-inner">
+          <div class="projects-table workout-addition">
+            <div class="row">
+              <div class="col-md-6">
+                  <label>Workout Name</label>
+                  <input [ngClass]="{'invalid':failedValidation}" [(ngModel)]="workoutName" type="text">
+              </div>
+              <div class="col-md-6">
+                  <label>Exercises</label>
+                  <input [(ngModel)]="workoutExercises" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <label>Days</label>
+                  <div class="day-list" *ngFor="let day of dayList">
+                    <input (change)="updateChecked(day.name, $event)" type="checkbox" id="checkbox_{{day.name}}" value="{{day.name}}" [checked]="day.checked" >
+                    <label for="checkbox_{{day.name}}"><span >{{day.name}}</span></label>
+                  </div>
+              </div>
+              <div class="col-md-12">
+                <button (click)="fbPostData(workoutName, workoutExercises)" class="btn btn-success add-workout fileinput-button">
+                    <i class="fa fa-plus"></i>
+                    <span>Save your Workout</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<h1>
+  Manage Workouts
+</h1>
+<h3>Current Workouts</h3>
+<div>
+    <p *ngFor="let workout of workoutList">
+      <span>{{workout.id}}</span>
+      <span>{{workout.name}}</span>
+      <span>{{workout.workoutWorkouts}}</span>
+      <span>{{workout.day}}</span>
+      <span><button (click)="fbDeleteItem(workout.id)">Delete Item</button></span>
+    </p>
+</div>
+<h3>Add a new workout</h3>
+<p>
+  <label>Name</label>
+  <input [(ngModel)]="workoutName" type="text">
+  <input [(ngModel)]="workoutWorkouts" type="text">
+  <input [(ngModel)]="workoutDay" type="text">
+<p>
+  <button (click)="fbPostData(workoutName, workoutWorkouts, workoutDay)">Add</button>
+</p>-->

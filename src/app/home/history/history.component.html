@@ -1,0 +1,33 @@
+<h1>
+  History
+</h1>
+
+<div>
+  <form>
+    <label>Search Workouts</label>
+    <input type="text" [(ngModel)]="term" [ngModelOptions]="{standalone: true}" />
+  </form>
+  <div>
+    <div *ngFor="let workout of workoutHistory | filter:term">
+      <span>{{workout.date}}</span>
+      <span>{{workout.workoutName}}</span>
+      <span>{{workout.completed}}</span>
+      <span><button (click)="fbDeleteItem(workout.id)">Delete Item</button></span>
+    </div>
+  </div>
+
+  <h3>Add new workout</h3>
+  <div>
+    
+    <label>Date</label>
+    <input type="date" [(ngModel)]="date">
+    <label>Name</label>
+    <select [(ngModel)]="workoutName">
+      <option *ngFor="let workout of workoutList" value="{{workout.name}}">{{workout.name}}</option>
+    </select>
+    <!--<input type="text" [(ngModel)]="workoutName">-->
+    <label>completed</label>
+    <input type="checkbox" checked [(ngModel)]="completed">
+    <button (click)="fbAddData(date, workoutName, completed)" >Add</button>
+  </div>
+</div>

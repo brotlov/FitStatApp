@@ -1,0 +1,19 @@
+<div class="login-page" [style.height]="innerHeight" [style.background-image]="'url(' + bgImage +')'">
+    <div class="login-box">
+        <div class="logo"><a href="#" title=""><img src="images/logo.png" alt="" /></a></div>
+        <strong>Login To Your Account</strong>
+        <span class="error" *ngIf="error">{{ error }}</span>
+        <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+            <input type="text" placeholder="Email address.." (ngModel)="email" name="email" class="txt" required>
+            <input type="password" placeholder="Password" (ngModel)="password" name="password" class="txt" required>
+            <a routerLink="/signup" class="alc">Don't have an account?</a>
+            <button type="submit" [disabled]="!formData.valid" class="basic-btn">Log in</button>
+        </form>
+        <strong>Or you can login with one of the following social network platforms</strong>
+        <div class="socials">
+            <a class="fb" (click)="loginFb()" href="javascript:void(0)" title=""><i class="fa fa-facebook"></i></a>
+            <!--<a class="twitter" (click)="loginTwitter()" href="#" title=""><i class="fa fa-twitter"></i></a>-->
+            <a class="google-plus" (click)="loginGoogle()" href="javascript:void(0)" title=""><i class="fa fa-google-plus"></i></a>
+        </div>
+    </div>
+</div>

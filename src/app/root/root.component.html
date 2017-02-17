@@ -1,0 +1,117 @@
+<div [ngClass]="{'extend':menuToggle}" class="dominence-layout">
+    <div [ngClass]="{'out':menuToggle}" class="dominence-sidemenu">
+        <div class="logo"><a routerLink="/home" title=""><img src="images/logo.png" alt="" /></a></div><!-- Logo -->
+        <div class="dominence-admin">
+            <img src="http://placehold.it/59x70" alt="" />
+            <div class="admin-name">
+                <strong>{{ name.auth.displayName }}</strong>
+                <!--TODO: Maybe if they donated then display "Donator" here or something?-->
+                <!--<span>Administrator</span>
+                <div class="admin-bar">
+                    <a href="profile.html" title=""><i class="fa fa-user-o"></i></a>
+                    <a href="login.html" title=""><i class="fa fa-lock"></i></a>
+                    <a href="mail.html" title=""><i class="fa fa-envelope-o"></i></a>
+                    <a href="login.html" title=""><i class="fa fa-power-off"></i></a>
+                </div>-->
+            </div>
+        </div>
+        <nav [ngClass]="{'disabled':settingsToggle}" class="scrollbar-inner navigation">
+            <ul>
+                <li>
+                    <a routerLink="/home" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Home</a>
+                </li>
+                <li>
+                    <a routerLink="/history" routerLinkActive="active">History</a>
+                </li>
+                <li>
+                    <a routerLink="/manage" routerLinkActive="active">Manage Workouts</a>
+                </li>
+                <li>
+                    <a routerLink="/calendar" routerLinkActive="active">Workout Calendar</a>
+                </li>
+                <li>
+                    <a (click)="logout()">Logout</a>
+                </li>
+            </ul>
+        </nav>
+        <div [ngClass]="{'active':settingsToggle}" class="settings-panel">
+            <h3>Accounts</h3>
+            <div class="toggle-setting">
+                <span>Office Account</span>
+                <div class="toggle-dark"><div rel=clickme class="toggle"></div></div>
+            </div>
+            <div class="toggle-setting">
+                <span>Personal Account</span>
+                <div class="toggle-dark"><div rel=clickme class="toggle off"></div></div>
+            </div>
+            <div class="toggle-setting">
+                <span>Business Account</span>
+                <div class="toggle-dark"><div rel=clickme class="toggle"></div></div>
+            </div>
+
+            <h3>General Settings</h3>
+            <div class="toggle-setting">
+                <span>Notifications</span>
+                <div class="toggle-dark"><div rel=clickme class="toggle"></div></div>
+            </div>
+            <div class="toggle-setting">
+                <span>Notification Sound</span>
+                <div class="toggle-dark"><div rel=clickme class="toggle"></div></div>
+            </div>
+            <div class="toggle-setting">
+                <span>My Profile</span>
+                <div class="toggle-dark"><div rel=clickme class="toggle"></div></div>
+            </div>
+            <div class="toggle-setting">
+                <span>Show Online</span>
+                <div class="toggle-dark"><div rel=clickme class="toggle off"></div></div>
+            </div>
+            <div class="toggle-setting">
+                <span>Public Profile</span>
+                <div class="toggle-dark"><div rel=clickme class="toggle"></div></div>
+            </div>
+        </div>
+    </div>
+    <div [ngClass]="{'in':menuToggle}" class="collapsed-menu">
+        <div class="logo"><a href="index.html" title=""><img src="images/logo2.png" alt="" /></a></div><!-- Logo -->
+        <ul>
+            <li><a href="index.html" title=""><i class="fa fa-tachometer"></i> <span>Dashboard</span></a></li>
+            <li><a href="dashboard2.html" title=""><i class="fa fa-tachometer"></i> <span>Dashboard 2</span></a></li>
+            <li><a href="mail.html" title=""><i class="fa fa-envelope-o"></i> <span>Mail System</span></a></li>
+            <li><a href="login.html" title=""><i class="fa fa-sign-in"></i> <span>Login</span></a></li>
+            <li><a href="icons.html" title=""><i class="fa fa-fort-awesome"></i> <span>Icons</span></a></li>
+            <li><a href="gallery-dynamic.html" title=""><i class="fa fa-camera-retro"></i> <span>Galleries</span></a></li>
+            <li><a href="widgets.html" title=""><i class="fa fa-bolt"></i> <span>Widgets</span></a></li>
+        </ul>
+    </div>
+    <header>
+        <a (click)="toggleMenu()" class="sidemenu-btn" href="javascript:void(0)" title=""><i class="ti-menu"></i></a>
+        <a (click)="toggleSettingsMenu()" class="settings-btn" href="javascript:void(0)" title=""><i class="ti-settings"></i></a>
+        <!--TODO: Make the header less lame-->
+        
+        <div class="header-exts">
+            <h3>Hi <a >{{ name.auth.displayName }} </a>, Welcome back to your FitStats</h3>
+            <!--<div class="full-screen">
+                <a class="round-btn color2-bg" href="#"  title=""><i class="ti-fullscreen"></i></a>
+            </div>-->
+        </div>
+    </header>
+    <div class="content-area">
+        <!--<div class="welcome">
+            <img src="images/sun.png" alt="" />
+            <div class="welcome-text">
+                <strong>Hi <a href="#" title="">{{ name.auth.displayName }} </a>, Welcome back</strong>
+                <span>Have a nice day</span>
+            </div>
+        </div>-->
+        <section id="mail">
+            <div class="widgets-holder">
+                <div class="row">
+                    <div class="masonary">
+                        <router-outlet></router-outlet>   
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

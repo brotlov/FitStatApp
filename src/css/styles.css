@@ -1,0 +1,73 @@
+a.active {
+  color: #20a2d6; }
+
+body a:focus {
+  text-decoration: none; }
+
+body .dominence-layout a:hover {
+  cursor: pointer;
+  text-decoration: none; }
+
+body .login-box input {
+  margin-bottom: 20px; }
+
+body .login-page {
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+body .header-exts {
+  margin-top: -16px; }
+
+body .widget .projects {
+  overflow: visible; }
+
+body button.add-workout {
+  float: right; }
+
+body table tr td.del {
+  text-align: right;
+  padding-right: 0 !important; }
+  body table tr td.del button {
+    width: 80px;
+    margin-bottom: 5px; }
+
+body .workout-addition {
+  padding-bottom: 30px; }
+  body .workout-addition .row {
+    margin-bottom: 20px; }
+    body .workout-addition .row label {
+      color: #20a2d6; }
+    body .workout-addition .row input {
+      margin-bottom: 15px; }
+    body .workout-addition .row input.invalid {
+      border-color: red; }
+  body .workout-addition button.add-workout {
+    float: none;
+    margin-top: 24px; }
+  body .workout-addition .day-list {
+    display: inline-block;
+    padding-right: 10px; }
+    body .workout-addition .day-list label, body .workout-addition .day-list input {
+      display: block;
+      width: auto;
+      float: none;
+      margin: 0 auto;
+      color: #585858; }
+    body .workout-addition .day-list input[type="checkbox"] {
+      display: none; }
+    body .workout-addition .day-list input[type="checkbox"] + label span {
+      padding: 15px 10px;
+      border-radius: 2px;
+      display: inline-block;
+      width: auto;
+      border: 1px solid #20a2d6; }
+    body .workout-addition .day-list input[type="checkbox"]:checked + label span {
+      background: #20a2d6;
+      color: #fff; }
+    body .workout-addition .day-list input[type="checkbox"] + label span:hover {
+      cursor: pointer;
+      background: #20a2d6;
+      color: #fff; }
+
+buttonhover {
+  cursor: pointer; }

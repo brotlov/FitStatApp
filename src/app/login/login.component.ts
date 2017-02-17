@@ -1,0 +1,74 @@
+import { Component, OnInit, HostBinding } from '@angular/core';
+import {AngularFire, AuthProviders, AuthMethods} from 'angularfire2';
+import {Router } from '@angular/router';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+
+  bgImage = '/images/login-bg-stock.jpg';
+  error: any;
+  innerHeight = (window.innerHeight) + "px";
+  
+
+  constructor(public af: AngularFire,private router: Router,) {
+      this.af.auth.subscribe(auth => { 
+      if(auth) {
+        this.router.navigateByUrl('/home');
+      }
+    });
+  }
+
+  onSubmit(formData) {
+    if(formData.valid) {
+      this.af.auth.login({
+        email: formData.value.email,
+        password: formData.value.password
+      },
+      {
+        provider: AuthProviders.Password,
+        method: AuthMethods.Password,
+      }).then(
+        (success) => {
+        this.router.navigate(['/home']);
+      }).catch(
+        (err) => {
+        this.error = err;
+      })
+    }
+  }
+
+  loginFb() {
+    this.af.auth.login({
+      provider: AuthProviders.Facebook,
+      method: AuthMethods.Popup,
+    }).then(
+        (success) => {
+        this.router.navigate(['/home']);
+      }).catch(
+        (err) => {
+        this.error = err;
+      })
+  }
+
+  loginGoogle() {
+    this.af.auth.login({
+      provider: AuthProviders.Google,
+      method: AuthMethods.Popup,
+    }).then(
+        (success) => {
+        this.router.navigate(['/home']);
+      }).catch(
+        (err) => {
+        this.error = err;
+      })
+  }
+
+
+  ngOnInit() {
+  }
+
+}

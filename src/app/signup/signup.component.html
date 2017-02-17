@@ -1,0 +1,13 @@
+<div class="login-page" [style.height]="innerHeight" [style.background-image]="'url(' + bgImage +')'">
+    <div class="login-box">
+        <div class="logo"><a href="#" title=""><img src="images/logo.png" alt="" /></a></div>
+        <strong>Fill The Form Below</strong>
+        <span class="error" *ngIf="error">{{ error }}</span>
+        <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+          <input type="text" placeholder="Email address.." (ngModel)="email" name="email" class="txt" required>
+          <input type="password" placeholder="Password" (ngModel)="password" name="password" class="txt" required>
+          <a routerLink="/">Back to Login</a>
+          <button type="submit" [disabled]="!formData.valid" class="basic-btn">Create my account</button>
+        </form>
+    </div>
+</div>
