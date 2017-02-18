@@ -4,8 +4,18 @@ a.active{
     color: $activeColor;
 }
 body{
+    .widget{
+        .status{
+            .status-text{
+                text-align: center;
+            }
+        }
+    }
+    header a{
+        float:right;
+    }
     a:focus{
-        text-decoration: none;
+        text-decoration: none; 
     }
     .dominence-layout{
         a:hover{

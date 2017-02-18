@@ -1,9 +1,82 @@
-<!--Main Workout Manager-->
-<div class="col-md-6">
+<div class="row">
+    <div class="masonary">
+    <div class="col-md-4" >
+        <div class="widget">
+            <div (click)="managePlans()" class="status">
+                <div class="status-text">
+                    <strong>Manage Workout Plans</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" >
+        <div class="widget">
+            <div (click)="manageWorkouts()" class="status">
+                <div class="status-text">
+                    <strong> Manage Workouts </strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" >
+        <div class="widget">
+            <div (click)="manageExercises()" class="status">
+                <div class="status-text">
+                    <strong> Manage Exercises </strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!--Plan Manager-->
+<div *ngIf="currentActiveSection === 'plan'" class="col-md-6">
+    <div class="widget">
+        <div class="widget-title">
+            <h2>Your Workout Plans</h2>
+            <button (click)="showAddPlanWidget()" class="btn btn-success add-workout fileinput-button">
+                <i class="fa fa-plus"></i>
+                <span>Add a plan</span>
+            </button>
+        </div>
+        <div class="projects scrollbar-inner">
+            <div class="projects-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Workouts Included</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let plan of planList; let i = index" [attr.data-index]="i" (click)="editPlan(plan.id)" >
+                            <td>{{i+1}}</td>
+                            <td>{{plan.name}}</td>
+                            <td>{{plan.workoutsIncluded}}</td>
+                            <td class="del">
+                              <button (click)="editPlan(plan.id)" type="submit" class="btn btn-primary start edit">
+                                  <i class="fa fa-edit"></i>
+                                  <span>Edit</span>
+                              </button>
+                              <button (click)="fbDeletePlan(plan.id)" 
+                                type="button" class="btn btn-danger delete">
+                                <i class="fa fa-trash"></i>
+                                <span> Delete</span>
+                              </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Workout Manager-->
+<div *ngIf="currentActiveSection === 'workout'" class="col-md-6">
     <div class="widget">
         <div class="widget-title">
             <h2>Your Workouts</h2>
-            <span class="color4">These are all of the workouts you've added to FitStat</span>
             <button (click)="showAddWorkoutWidget()" class="btn btn-success add-workout fileinput-button">
                 <i class="fa fa-plus"></i>
                 <span>Add a workout</span>
@@ -21,7 +94,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let workout of workoutList; let i = index" [attr.data-index]="i">
+                        <tr  *ngFor="let workout of workoutList; let i = index" [attr.data-index]="i">
                             <td>{{i+1}}</td>
                             <td>{{workout.name}}</td>
                             <td>{{workout.exercises}}</td>
@@ -45,11 +118,41 @@
         </div>
     </div>
 </div>
+<!--Add a Plan widget-->
+<div *ngIf="addPlanWidgetShown" class="col-md-6">
+    <div class="widget">
+        <div class="widget-title">
+            <h2>Add a new workout plan</h2>
+        </div>
+        <div class="projects scrollbar-inner">
+          <div class="projects-table workout-addition">
+            <div class="row">
+              <div class="col-md-6">
+                  <label>Plan Name</label>
+                  <input [ngClass]="{'invalid':failedValidation}" [(ngModel)]="planName" type="text">
+              </div>
+              <div class="col-md-6">
+                  <label>Workouts</label>
+                  <input [(ngModel)]="planWorkouts" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button (click)="fbPostPlanData(planName, workoutExercises)" class="btn btn-success add-workout fileinput-button">
+                    <i class="fa fa-plus"></i>
+                    <span>Add to your Workout List</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
 <!--Add a workout widget-->
 <div *ngIf="addWorkoutWidgetShown && !editWorkoutWidgetShown" class="col-md-6">
     <div class="widget">
         <div class="widget-title">
-            <h2>Add a workout to your workout list</h2>
+            <h2>Add a workout to your workout plan</h2>
         </div>
         <div class="projects scrollbar-inner">
           <div class="projects-table workout-addition">

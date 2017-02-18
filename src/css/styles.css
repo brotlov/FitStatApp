@@ -1,6 +1,12 @@
 a.active {
   color: #20a2d6; }
 
+body .widget .status .status-text {
+  text-align: center; }
+
+body header a {
+  float: right; }
+
 body a:focus {
   text-decoration: none; }
 
