@@ -55,6 +55,37 @@ body{
             }
         }
     }
+    .page-top-nav{
+        .col-md-4{
+            padding:0;
+            .widget{
+                .status{
+                    float:none;
+                }
+                .status-text strong{
+                    padding-bottom:15px;
+                    border-bottom:3px solid #fff;
+                    display:inline;
+                    width:auto;
+                    float:none;
+                }
+                border:none;
+                &:hover {
+                    cursor: pointer;
+                    .status-text strong{
+                        padding-bottom:15px;
+                        border-bottom:3px solid $mainColour;
+                    }
+                }
+                &.active{
+                    .status-text strong{
+                        padding-bottom:15px;
+                        border-bottom:3px solid $mainColour;
+                    }
+                }
+            }
+        }
+    }
     .workout-addition{
         padding-bottom:30px;
         .row{
@@ -64,6 +95,12 @@ body{
             }
             input{
                 margin-bottom:15px;
+            }
+            select,option{
+                width:100%;
+                padding:10px 20px;
+                height:40px;
+                border:1px solid #ececec;
             }
             input.invalid{
                 border-color:red;

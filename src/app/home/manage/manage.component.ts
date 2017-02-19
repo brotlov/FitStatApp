@@ -21,7 +21,9 @@ dayList = [
   workoutId:any;
   planName: string = null;
   workoutName: string = null;
+  oldWorkoutName: string = null;
   workoutExercises: string = null;
+  planWorkouts: string = null;
   failedValidation=false;
   checkedDays = [];
   currentActiveSection = "";
@@ -50,10 +52,8 @@ dayList = [
   editPlan(id){
     
     this.workoutInfoShown=true;
-    firebase.database().ref("/SavedPlans/" + id).once('value', (snapshot) =>{
+    firebase.database().ref("/Planlist/" + id).once('value', (snapshot) =>{
       this.editPlanName = snapshot.val().name;
-      
-      console.log(id);  
     });
   }
 
@@ -79,6 +79,7 @@ dayList = [
     this.editWorkoutWidgetShown = true;
     firebase.database().ref("/Workoutlist/" + id).once('value', (snapshot) =>{
       this.workoutName = snapshot.val().name;
+      this.oldWorkoutName = snapshot.val().name;
       this.workoutExercises = snapshot.val().exercises;
       var checkedDayList = snapshot.val().day;
       for(var i = 0; i < this.dayList.length; i++) {
@@ -114,17 +115,18 @@ dayList = [
       snapshotVal.id=snapshot.key;
       this.workoutList.push(snapshotVal);
     });
-    firebase.database().ref("/SavedPlans").on('child_added', (snapshot) =>{
+    firebase.database().ref("/Planlist").on('child_added', (snapshot) =>{
       var snapshotVal = snapshot.val();
       snapshotVal.id=snapshot.key;
       this.planList.push(snapshotVal);
     });
 
     firebase.database().ref("/Workoutlist").on('child_changed', (snapshot) =>{
-      var index = this.workoutList.findIndex(x => x.name==snapshot.val().name);
+      var index = this.workoutList.findIndex(x => x.name==this.oldWorkoutName);
       var snapshotVal = snapshot.val();
       snapshotVal.id=snapshot.key;
       this.workoutList[index]=snapshotVal;
+      this.oldWorkoutName=snapshot.val().name;
     });
     firebase.database().ref("/SavedPlans").on('child_changed', (snapshot) =>{
       var index = this.planList.findIndex(x => x.name==snapshot.val().name);
@@ -163,6 +165,21 @@ dayList = [
     }
     if (workoutName != undefined){
       firebase.database().ref("/Workoutlist").push({name: workoutName, exercises: exercises, day: this.checkedDays});
+      this.planName = '';
+      this.planWorkouts = '';
+      this.addPlanWidgetShown=false;
+    }
+  }
+
+  fbPostPlanData(name, workouts){
+    if (name == undefined){
+      this.failedValidation=true;
+    }
+    if (workouts == undefined){
+      workouts = "";
+    }
+    if (name != undefined){
+      firebase.database().ref("/Planlist").push({name: name, workouts: workouts});
       this.workoutName = '';
       this.workoutExercises = '';
       this.addWorkoutWidgetShown=false;
@@ -170,15 +187,15 @@ dayList = [
     }
   }
 
-  fbUpdateData(workoutName, exercises,id){
-    if (workoutName == undefined){
+  fbUpdateData(oldWorkoutName,newWorkoutName, exercises,id){
+    if (newWorkoutName == undefined){
       this.failedValidation=true;
     }
     if (exercises == undefined){
       exercises = "";
     }
-    if (workoutName != undefined){
-      firebase.database().ref("/Workoutlist/" + id).update({name: workoutName, exercises: exercises, day: this.checkedDays})
+    if (newWorkoutName != undefined){
+      firebase.database().ref("/Workoutlist/" + id).update({name: newWorkoutName, exercises: exercises, day: this.checkedDays})
     }
   }
 
