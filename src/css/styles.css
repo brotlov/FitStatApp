@@ -43,6 +43,9 @@ body .page-top-nav .col-md-4 {
     border: none; }
     body .page-top-nav .col-md-4 .widget .status {
       float: none; }
+      body .page-top-nav .col-md-4 .widget .status.active .status-text strong {
+        padding-bottom: 15px;
+        border-bottom: 3px solid #20a2d6; }
     body .page-top-nav .col-md-4 .widget .status-text strong {
       padding-bottom: 15px;
       border-bottom: 3px solid #fff;
@@ -54,9 +57,6 @@ body .page-top-nav .col-md-4 {
       body .page-top-nav .col-md-4 .widget:hover .status-text strong {
         padding-bottom: 15px;
         border-bottom: 3px solid #20a2d6; }
-    body .page-top-nav .col-md-4 .widget.active .status-text strong {
-      padding-bottom: 15px;
-      border-bottom: 3px solid #20a2d6; }
 
 body .workout-addition {
   padding-bottom: 30px; }
@@ -71,6 +71,8 @@ body .workout-addition {
       padding: 10px 20px;
       height: 40px;
       border: 1px solid #ececec; }
+    body .workout-addition .row select.multiple {
+      height: auto; }
     body .workout-addition .row input.invalid {
       border-color: red; }
   body .workout-addition button.add-workout {

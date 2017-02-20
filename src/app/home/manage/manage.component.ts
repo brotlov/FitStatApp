@@ -19,30 +19,55 @@ dayList = [
     {name: "Sunday", checked: false},
   ];
   workoutId:any;
+  planId:any;
   planName: string = null;
   workoutName: string = null;
   oldWorkoutName: string = null;
   workoutExercises: string = null;
   planWorkouts: string = null;
-  failedValidation=false;
+  selectedPlanWorkouts: string = null;
+  oldPlanName: string = null;
+  highlightedDiv: number;
   checkedDays = [];
-  currentActiveSection = "";
+  workoutList = [];
+  planList = [];
+  failedValidation=false;
   workoutInfoShown = false;
   addWorkoutWidgetShown = false;
   editWorkoutWidgetShown = false;
+  editPlanWidgetShown = false;
   addPlanWidgetShown = false;
   editPlanName = "";
-  workoutList = [];
-  planList = [];
+  currentActiveSection = "";
+  
+
+  toggleActivePlan(id,currentStatus,name){
+    currentStatus = !currentStatus;
+    this.oldPlanName = name;
+    // firebase.database().ref().child("/Planlist").orderByValue('active').equalTo('active');
+    firebase.database().ref("/Planlist/" + id).update({active:currentStatus})
+    
+  }
+
+  toggleHighlight(newValue: number) {
+    if (this.highlightedDiv === newValue) {
+      this.highlightedDiv = 0;
+    }
+    else {
+      this.highlightedDiv = newValue;
+    }
+  }
 
   managePlans(){
     this.currentActiveSection="plan";
     this.addWorkoutWidgetShown = false;
+    this.editWorkoutWidgetShown = false;
   }
 
   manageWorkouts(){
     this.currentActiveSection="workout";
     this.addPlanWidgetShown = false;
+    this.editPlanWidgetShown = false;
   }
 
   manageExercises(){
@@ -50,11 +75,14 @@ dayList = [
   }
 
   editPlan(id){
-    
-    this.workoutInfoShown=true;
+    this.planId = id
     firebase.database().ref("/Planlist/" + id).once('value', (snapshot) =>{
-      this.editPlanName = snapshot.val().name;
+      this.selectedPlanWorkouts = snapshot.val().workouts;
+      this.oldPlanName = snapshot.val().name;
+      this.planName = snapshot.val().name;
     });
+    this.editPlanWidgetShown=true;
+    this.addPlanWidgetShown=false;
   }
 
   updateChecked(value,event){
@@ -92,10 +120,10 @@ dayList = [
   }
 
   showAddPlanWidget(){
+    this.editPlanWidgetShown = false;
     this.addPlanWidgetShown= !this.addPlanWidgetShown;
     this.planName = '';
     this.workoutExercises = '';
-    this.editWorkoutWidgetShown = false;
   }
 
   showAddWorkoutWidget(){
@@ -128,23 +156,21 @@ dayList = [
       this.workoutList[index]=snapshotVal;
       this.oldWorkoutName=snapshot.val().name;
     });
-    firebase.database().ref("/SavedPlans").on('child_changed', (snapshot) =>{
-      var index = this.planList.findIndex(x => x.name==snapshot.val().name);
+    firebase.database().ref("/Planlist").on('child_changed', (snapshot) =>{
+      var index = this.planList.findIndex(x => x.name==this.oldPlanName);
       var snapshotVal = snapshot.val();
       snapshotVal.id=snapshot.key;
       this.planList[index]=snapshotVal;
+      this.oldPlanName=snapshot.val().name;
     });
-    
-
     firebase.database().ref("/Workoutlist").on('child_removed', (snapshot) =>{
       var index = this.workoutList.findIndex(x => x.name==snapshot.val().name);
       this.workoutList.splice(index, 1);
     });
-    firebase.database().ref("/SavedPlans").on('child_removed', (snapshot) =>{
+    firebase.database().ref("/Planlist").on('child_removed', (snapshot) =>{
       var index = this.planList.findIndex(x => x.name==snapshot.val().name);
       this.planList.splice(index, 1);
     });
-
   }
 
   addToList(workoutName){
@@ -152,7 +178,6 @@ dayList = [
     var key = "";
     ref.orderByChild("id").equalTo(workoutName).on("child_added", function(snapshot) {
        key = snapshot.key;
-       
   });  
 }
 
@@ -167,7 +192,7 @@ dayList = [
       firebase.database().ref("/Workoutlist").push({name: workoutName, exercises: exercises, day: this.checkedDays});
       this.planName = '';
       this.planWorkouts = '';
-      this.addPlanWidgetShown=false;
+      this.addWorkoutWidgetShown=false;
     }
   }
 
@@ -182,7 +207,7 @@ dayList = [
       firebase.database().ref("/Planlist").push({name: name, workouts: workouts});
       this.workoutName = '';
       this.workoutExercises = '';
-      this.addWorkoutWidgetShown=false;
+      this.addPlanWidgetShown=false;
       this.checkedDays.length = 0
     }
   }
@@ -199,22 +224,31 @@ dayList = [
     }
   }
 
+  fbUpdatePlanData(oldPlanName, newPlanName, workouts,id){
+    if (newPlanName == undefined){
+      this.failedValidation=true;
+    }
+    if (workouts == undefined){
+      workouts = "";
+    }
+    if (newPlanName != undefined){
+      firebase.database().ref("/Planlist/" + id).update({name: newPlanName, workouts: workouts})
+    }
+  }
+
   fbDeleteItem(id){
     firebase.database().ref("/Workoutlist/" + id).remove().then(function(){
-  })
+    })
   }
   fbDeletePlan(id){
-    firebase.database().ref("/SavedPlans/" + id).remove().then(function(){
-  })
-}
- 
+    firebase.database().ref("/Planlist/" + id).remove().then(function(){
+    })
+  }
 
   constructor() { 
-    
   }
 
   ngOnInit() {
     this.fbGetData();
   }
-
 }

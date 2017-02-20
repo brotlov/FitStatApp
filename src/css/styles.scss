@@ -61,11 +61,17 @@ body{
             .widget{
                 .status{
                     float:none;
+                    &.active{
+                    .status-text strong{
+                        padding-bottom:15px;
+                        border-bottom:3px solid $mainColour;
+                    }
+                }
                 }
                 .status-text strong{
                     padding-bottom:15px;
                     border-bottom:3px solid #fff;
-                    display:inline;
+                    display:inline; 
                     width:auto;
                     float:none;
                 }
@@ -77,12 +83,7 @@ body{
                         border-bottom:3px solid $mainColour;
                     }
                 }
-                &.active{
-                    .status-text strong{
-                        padding-bottom:15px;
-                        border-bottom:3px solid $mainColour;
-                    }
-                }
+                
             }
         }
     }
@@ -101,6 +102,9 @@ body{
                 padding:10px 20px;
                 height:40px;
                 border:1px solid #ececec;
+            }
+            select.multiple{
+                height:auto;
             }
             input.invalid{
                 border-color:red;

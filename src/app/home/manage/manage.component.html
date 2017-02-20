@@ -1,7 +1,7 @@
 <div class="page-top-nav">
     <div class="col-md-4" >
         <div class="widget">
-            <div (click)="managePlans()" class="status">
+            <div (click)="managePlans();toggleHighlight(1)" [ngClass]="{'active': highlightedDiv === 1}" class="status">
                 <div class="status-text">
                     <strong>Manage Workout Plans</strong>
                 </div>
@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-4" >
         <div class="widget">
-            <div (click)="manageWorkouts()" class="status">
+            <div (click)="manageWorkouts();toggleHighlight(2)" [ngClass]="{'active': highlightedDiv === 2}" class="status">
                 <div class="status-text">
                     <strong> Manage Workouts </strong>
                 </div>
@@ -19,7 +19,7 @@
     </div>
     <div class="col-md-4" >
         <div class="widget">
-            <div (click)="manageExercises()" class="status">
+            <div (click)="manageExercises();toggleHighlight(3)" [ngClass]="{'active': highlightedDiv === 3}" class="status">
                 <div class="status-text">
                     <strong> Manage Exercises </strong>
                 </div>
@@ -28,14 +28,11 @@
     </div>
 </div>
 <div class="content-area">
-        <section id="mail">
-            <div class="widgets-holder">
-                <div class="row">
-                    <div class="masonary">
-                           <!--Top Nav-->
-
-
-            <!--Plan Manager-->
+    <section id="mail">
+        <div class="widgets-holder">
+            <div class="row">
+                <div class="masonary">
+                    <!--Plan Manager-->
                     <div *ngIf="currentActiveSection === 'plan'" class="col-md-6">
                         <div class="widget">
                             <div class="widget-title">
@@ -50,16 +47,22 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
+                                                <th>Active Plan</th>
                                                 <th>#</th>
                                                 <th>Name</th>
                                                 <th>Workouts Included</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let plan of planList; let i = index" [attr.data-index]="i" (click)="editPlan(plan.id)" >
+                                            <tr *ngFor="let plan of planList; let i = index" [attr.data-index]="i" >
+                                                <td><a href="javascript:void(0)" (click)="toggleActivePlan(plan.id,plan.active,plan.name)">
+                                                    <i *ngIf="!plan.active" class="fa fa-star-o"></i>
+                                                    <i *ngIf="plan.active" class="fa fa-star"></i>
+                                                    </a>
+                                                </td>
                                                 <td>{{i+1}}</td>
                                                 <td>{{plan.name}}</td>
-                                                <td>{{plan.workoutsIncluded}}</td>
+                                                <td>{{plan.workouts}}</td>
                                                 <td class="del">
                                                 <button (click)="editPlan(plan.id)" type="submit" class="btn btn-primary start edit">
                                                     <i class="fa fa-edit"></i>
@@ -78,8 +81,41 @@
                             </div>
                         </div>
                     </div>
+                    <!--Edit a Plan widget-->
+                    <div *ngIf="editPlanWidgetShown && !addPlanWidgetShown" class="col-md-6">
+                        <div class="widget">
+                            <div class="widget-title">
+                                <h2>Edit workout plan {{oldPlanName}}</h2>
+                            </div>
+                            <div class="projects scrollbar-inner">
+                            <div class="projects-table workout-addition">
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <label>Plan Name</label>
+                                    <input [ngClass]="{'invalid':failedValidation}" [(ngModel)]="planName" type="text">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Workouts</label>
+                                    <p>Hold down Control to select multiple items</p>
+                                    <select class="multiple" multiple [(ngModel)]="planWorkouts">
+                                        <option *ngFor="let workout of workoutList" value="{{workout.name}}" [selected]="selectedPlanWorkouts.indexOf(workout.name)>=0 ? true : false" >{{workout.name}}</option>
+                                    </select>
+                                </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-md-12">
+                                    <button (click)="fbUpdatePlanData(oldPlanName,planName, planWorkouts,planId)" class="btn btn-success add-workout fileinput-button">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Save your Plan List</span>
+                                    </button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                     <!--Add a Plan widget-->
-                    <div *ngIf="addPlanWidgetShown" class="col-md-6">
+                    <div *ngIf="addPlanWidgetShown && !editPlanWidgetShown" class="col-md-6">
                         <div class="widget">
                             <div class="widget-title">
                                 <h2>Add a new workout plan</h2>
@@ -93,14 +129,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label>Workouts</label>
-                                    <select [(ngModel)]="planWorkouts">
+                                    <select class="multiple" multiple [(ngModel)]="planWorkouts">
                                         <option *ngFor="let workout of workoutList" value="{{workout.name}}">{{workout.name}}</option>
                                     </select>
                                 </div>
                                 </div>
                                 <div class="row">
                                 <div class="col-md-12">
-                                    <button (click)="fbPostPlanData(planName, workoutExercises)" class="btn btn-success add-workout fileinput-button">
+                                    <button (click)="fbPostPlanData(planName, planWorkouts)" class="btn btn-success add-workout fileinput-button">
                                         <i class="fa fa-plus"></i>
                                         <span>Add to your Plan List</span>
                                     </button>
@@ -110,7 +146,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!--Workout Manager-->
                     <div *ngIf="currentActiveSection === 'workout'" class="col-md-6">
                         <div class="widget">
