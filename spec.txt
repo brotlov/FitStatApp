@@ -1,0 +1,50 @@
+Login
+    Able to login with Facebook, Google Account or by Email.
+    Once logged in, can access their account.
+    If not logged in, they are directed to the login screen.
+Home Page
+    Able to add a new workout, even if no workout plan or workout has been created
+        If no plan or workout has been made, then all data for that workout will simply be stored inside the calendar as "UntitledWorkout-DATE"
+    If the user has a workout plan set, then it will show the next workout on the schedule.
+Add Workout
+    Able to add a new workout
+        If the user has an active plan or scheduled workouts, it will recommend adding the corresponding workout for that day.
+        If there's no active plan or workout, FitStat will create an untitled workout with all the exercises from that day.
+    If adding a new custom workout:
+        Able to add in exercises. When adding exercises, it'll be a search box with suggestions. There will be an option to add a custom exercise. The search box can be filtered by multiple categories:
+            Name ("Squat")
+            Body Area ("Lower Body")
+            Body Part ("Legs")
+        Able to set rep numbers and weight numbers on each exercise.
+    If adding a new workout from a workout list:
+        Will autofill with a list of all the exercises from that workout.
+        If this workout has been used before, FitStat will auto-increment the weight numbers if apart of the "Weights" category.
+History
+    Calendar of all workouts
+    Able to browse into the calendar and add workouts from the past.
+    Clicking on a workout item inside the calendar takes you to details of that workout
+        Will show the workout, all exercises and more.
+        Able to retroactively edit the workout.
+        Details will include weight numbers and rep numbers if apart of "Weights" category, or Time Spend and Distance Travelled if apart of "Cardio" category, on each exercise for that day
+Manage
+    Able to create workout plans, set workouts and create exercises
+    Plans
+        Plans contain various workouts. E.g Stronglifts contains 2 workouts. Stronglifts is a workout plan
+        Able to set an active plan.
+        Able to assign a workout to a certain day, based on a 2 week calendar view.
+        Able to quickly add popular plans, which will be dran from a database, or make your own custom plan.
+    Workouts
+        A workout contains various exercises. E.g "Chest Day" would be a workout, and you'd assign "Bench Press, Dumbell Press, Cable Flyes" to it.
+        Able to assign a workout to a certain day of the week.
+        Can link to a plan.
+        When adding exercises, it'll be a search box with suggestions. There will be an option to add a custom exercise. The search box can be filtered by multiple categories:
+            Name ("Squat")
+            Body Area ("Lower Body")
+            Body Part ("Legs")
+Stats
+    Able to search for an exercise to find stats specific relating to that exercise.
+    Can view a graph of progress over a period of time.
+    See a breakdown of each exercise/workout
+Settings
+    Able to change weekly auto-increment number for each exercise (2.5kg, 5kg, etc)
+    Change Password

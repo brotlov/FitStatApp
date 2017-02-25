@@ -4,6 +4,21 @@ a.active{
     color: $activeColor;
 }
 body{
+    .content-area{
+        padding:0;
+    }
+    .widgets-holder{
+        .widget-title{
+            height:115px;
+        }
+        .row >{
+            .masonary >{
+                div{
+                    padding:0;
+                }
+            }
+        }
+    }
     .widget{
         .status{
             .status-text{
@@ -13,6 +28,9 @@ body{
     }
     header a{
         float:right;
+    }
+    header a.header-name{
+        float:none;
     }
     a:focus{
         text-decoration: none; 
@@ -59,14 +77,15 @@ body{
         .col-md-4{
             padding:0;
             .widget{
+                margin-bottom:0;
                 .status{
                     float:none;
                     &.active{
                     .status-text strong{
                         padding-bottom:15px;
                         border-bottom:3px solid $mainColour;
+                        }
                     }
-                }
                 }
                 .status-text strong{
                     padding-bottom:15px;
@@ -83,7 +102,6 @@ body{
                         border-bottom:3px solid $mainColour;
                     }
                 }
-                
             }
         }
     }

@@ -4,7 +4,7 @@
         <div class="dominence-admin">
             <img src="http://placehold.it/59x70" alt="" />
             <div class="admin-name">
-                <strong>{{ name.auth.displayName }}</strong>
+                <strong>{{userName}}</strong>
                 <!--TODO: Maybe if they donated then display "Donator" here or something?-->
                 <!--<span>Administrator</span>
                 <div class="admin-bar">
@@ -90,7 +90,7 @@
         <!--TODO: Make the header less lame-->
         
         <div class="header-exts">
-            <h3>Hi <a >{{ name.auth.displayName }} </a>, Welcome back to your FitStats</h3>
+            <h3>Hi <a class="header-name">{{userName}}</a>, Welcome back to your FitStats</h3>
             <!--<div class="full-screen">
                 <a class="round-btn color2-bg" href="#"  title=""><i class="ti-fullscreen"></i></a>
             </div>-->

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { Router } from '@angular/router';
+import {GlobalService } from '../global.service';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-root1',
@@ -9,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class RootComponent implements OnInit {
 
+  test = "asdfasdf";
+  userName = "loading..."; 
   name: any;
   state: string = '';
   menuToggle = false;
@@ -23,22 +27,30 @@ export class RootComponent implements OnInit {
     else this.settingsToggle = true
   }
 
-  constructor(public af: AngularFire,private router: Router) {
+  constructor(public af: AngularFire,private router: Router,private globals: GlobalService,private localStorageService: LocalStorageService) {
 
     this.af.auth.subscribe(auth => {
       if(auth) {
         this.name = auth;
       }
     });
-
   }
 
   ngOnInit() {
+    this.fbGetName();
+  }
+
+  fbGetName(){
+    firebase.database().ref("/Users").on('child_added', (snapshot) =>{
+      if (snapshot.key === this.localStorageService.get('userKey').toString()){
+        this.userName = snapshot.val().name;
+      }
+    })
   }
 
   logout() {
      this.af.auth.logout();
-     console.log('logged out');
      this.router.navigateByUrl('/login');
+     
   }
 }

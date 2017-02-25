@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import {AngularFire, AuthProviders, AuthMethods} from 'angularfire2';
 import {Router } from '@angular/router';
+declare var firebase: any;
 
 @Component({
   selector: 'app-signup',
@@ -25,6 +26,7 @@ export class SignupComponent implements OnInit {
         password: formData.value.password
       }).then(
         (success) => {
+        firebase.database().ref("/Users").push({name: formData.value.name,email:formData.value.email});
         this.router.navigate(['/'])
       }).catch(
         (err) => {

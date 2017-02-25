@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {GlobalService } from '../../global.service';
+import { LocalStorageService } from 'angular-2-local-storage';
 declare var firebase: any;
 
 @Component({
@@ -27,7 +29,7 @@ dayList = [
   planWorkouts: string = null;
   selectedPlanWorkouts: string = null;
   oldPlanName: string = null;
-  highlightedDiv: number;
+  highlightedDiv = 1;
   checkedDays = [];
   workoutList = [];
   planList = [];
@@ -38,15 +40,13 @@ dayList = [
   editPlanWidgetShown = false;
   addPlanWidgetShown = false;
   editPlanName = "";
-  currentActiveSection = "";
+  currentActiveSection = "plan";
+  userKey = "";
   
-
   toggleActivePlan(id,currentStatus,name){
     currentStatus = !currentStatus;
     this.oldPlanName = name;
-    // firebase.database().ref().child("/Planlist").orderByValue('active').equalTo('active');
-    firebase.database().ref("/Planlist/" + id).update({active:currentStatus})
-    
+    firebase.database().ref("/Users/" + this.userKey + "/Planlist/" + id).update({active:currentStatus})
   }
 
   toggleHighlight(newValue: number) {
@@ -72,11 +72,13 @@ dayList = [
 
   manageExercises(){
     this.currentActiveSection="exercises";
+    this.addPlanWidgetShown = false;
+    this.editPlanWidgetShown = false;
   }
 
   editPlan(id){
     this.planId = id
-    firebase.database().ref("/Planlist/" + id).once('value', (snapshot) =>{
+    firebase.database().ref("/Users/" + this.userKey + "/Planlist/" + id).once('value', (snapshot) =>{
       this.selectedPlanWorkouts = snapshot.val().workouts;
       this.oldPlanName = snapshot.val().name;
       this.planName = snapshot.val().name;
@@ -138,43 +140,44 @@ dayList = [
   }
 
   fbGetData(){
-    firebase.database().ref("/Workoutlist").on('child_added', (snapshot) =>{
+    firebase.database().ref("/Users/" + this.userKey + "/Workoutlist").on('child_added', (snapshot) =>{
       var snapshotVal = snapshot.val();
       snapshotVal.id=snapshot.key;
       this.workoutList.push(snapshotVal);
     });
-    firebase.database().ref("/Planlist").on('child_added', (snapshot) =>{
+
+    firebase.database().ref("/Users/" + this.userKey + "/Planlist").on('child_added', (snapshot) =>{
       var snapshotVal = snapshot.val();
       snapshotVal.id=snapshot.key;
       this.planList.push(snapshotVal);
     });
 
-    firebase.database().ref("/Workoutlist").on('child_changed', (snapshot) =>{
+    firebase.database().ref("/Users/" + this.userKey + "/Workoutlist").on('child_changed', (snapshot) =>{
       var index = this.workoutList.findIndex(x => x.name==this.oldWorkoutName);
       var snapshotVal = snapshot.val();
       snapshotVal.id=snapshot.key;
       this.workoutList[index]=snapshotVal;
       this.oldWorkoutName=snapshot.val().name;
     });
-    firebase.database().ref("/Planlist").on('child_changed', (snapshot) =>{
+    firebase.database().ref("/Users/" + this.userKey + "/Planlist").on('child_changed', (snapshot) =>{
       var index = this.planList.findIndex(x => x.name==this.oldPlanName);
       var snapshotVal = snapshot.val();
       snapshotVal.id=snapshot.key;
       this.planList[index]=snapshotVal;
       this.oldPlanName=snapshot.val().name;
     });
-    firebase.database().ref("/Workoutlist").on('child_removed', (snapshot) =>{
+    firebase.database().ref("/Users/" + this.userKey + "/Workoutlist").on('child_removed', (snapshot) =>{
       var index = this.workoutList.findIndex(x => x.name==snapshot.val().name);
       this.workoutList.splice(index, 1);
     });
-    firebase.database().ref("/Planlist").on('child_removed', (snapshot) =>{
+    firebase.database().ref("/Users/" + this.userKey + "/Planlist").on('child_removed', (snapshot) =>{
       var index = this.planList.findIndex(x => x.name==snapshot.val().name);
       this.planList.splice(index, 1);
     });
   }
 
   addToList(workoutName){
-    var ref = firebase.database().ref("/Workoutlist");
+    var ref = firebase.database().ref("/Users/" + this.userKey + "/Workoutlist");
     var key = "";
     ref.orderByChild("id").equalTo(workoutName).on("child_added", function(snapshot) {
        key = snapshot.key;
@@ -189,7 +192,7 @@ dayList = [
       exercises = "";
     }
     if (workoutName != undefined){
-      firebase.database().ref("/Workoutlist").push({name: workoutName, exercises: exercises, day: this.checkedDays});
+      firebase.database().ref("/Users/" + this.userKey + "/Workoutlist").push({name: workoutName, exercises: exercises, day: this.checkedDays});
       this.planName = '';
       this.planWorkouts = '';
       this.addWorkoutWidgetShown=false;
@@ -204,7 +207,7 @@ dayList = [
       workouts = "";
     }
     if (name != undefined){
-      firebase.database().ref("/Planlist").push({name: name, workouts: workouts});
+      firebase.database().ref("/Users/" + this.userKey + "/Planlist").push({name: name, workouts: workouts});
       this.workoutName = '';
       this.workoutExercises = '';
       this.addPlanWidgetShown=false;
@@ -220,7 +223,7 @@ dayList = [
       exercises = "";
     }
     if (newWorkoutName != undefined){
-      firebase.database().ref("/Workoutlist/" + id).update({name: newWorkoutName, exercises: exercises, day: this.checkedDays})
+      firebase.database().ref("/Users/" + this.userKey + "/Workoutlist/" + id).update({name: newWorkoutName, exercises: exercises, day: this.checkedDays})
     }
   }
 
@@ -232,23 +235,25 @@ dayList = [
       workouts = "";
     }
     if (newPlanName != undefined){
-      firebase.database().ref("/Planlist/" + id).update({name: newPlanName, workouts: workouts})
+      firebase.database().ref("/Users/" + this.userKey + "/Planlist/" + id).update({name: newPlanName, workouts: workouts})
     }
+    this.editPlanWidgetShown=false;
   }
 
   fbDeleteItem(id){
-    firebase.database().ref("/Workoutlist/" + id).remove().then(function(){
+    firebase.database().ref("/Users/" + this.userKey + "/Workoutlist/" + id).remove().then(function(){
     })
   }
   fbDeletePlan(id){
-    firebase.database().ref("/Planlist/" + id).remove().then(function(){
+    firebase.database().ref("/Users/" + this.userKey + "/Planlist/" + id).remove().then(function(){
     })
   }
 
-  constructor() { 
+  constructor(private globals: GlobalService,private localStorageService: LocalStorageService) { 
   }
 
   ngOnInit() {
+    this.userKey = this.localStorageService.get('userKey').toString();
     this.fbGetData();
   }
 }

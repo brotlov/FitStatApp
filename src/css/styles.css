@@ -1,11 +1,23 @@
 a.active {
   color: #20a2d6; }
 
+body .content-area {
+  padding: 0; }
+
+body .widgets-holder .widget-title {
+  height: 115px; }
+
+body .widgets-holder .row > .masonary > div {
+  padding: 0; }
+
 body .widget .status .status-text {
   text-align: center; }
 
 body header a {
   float: right; }
+
+body header a.header-name {
+  float: none; }
 
 body a:focus {
   text-decoration: none; }
@@ -40,6 +52,7 @@ body table tr td.del {
 body .page-top-nav .col-md-4 {
   padding: 0; }
   body .page-top-nav .col-md-4 .widget {
+    margin-bottom: 0;
     border: none; }
     body .page-top-nav .col-md-4 .widget .status {
       float: none; }

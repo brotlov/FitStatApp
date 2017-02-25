@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import {FilterPipe} from './app.filter';
 import {DataService} from './data.service';
 import {FirebaseService} from './firebase.service';
+import {GlobalService} from './global.service';
 import { ManageComponent } from './home/manage/manage.component';
 import { CalendarComponent } from './home/calendar/calendar.component';
 import { AngularFireModule } from 'angularfire2';
@@ -17,6 +18,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './auth.service';
 import { APP_ROUTES_PROVIDER } from './app.route';
 import { RootComponent } from './root/root.component';
+import { LocalStorageModule } from 'angular-2-local-storage';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBYF9xMM-YegvX9w9ISPtcXmjh9rK2MaAk",
@@ -43,9 +45,13 @@ export const firebaseConfig = {
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    APP_ROUTES_PROVIDER
+    APP_ROUTES_PROVIDER,
+    LocalStorageModule.withConfig({
+        prefix: 'my-app',
+        storageType: 'localStorage'
+    })
   ],
-  providers: [DataService,FirebaseService,AuthGuard],
+  providers: [DataService,FirebaseService,AuthGuard,GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
